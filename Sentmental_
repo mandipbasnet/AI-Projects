@@ -1,0 +1,93 @@
+Sentiment Analysis with NLTK
+
+Overview
+
+This project performs sentiment analysis on user input text using NLTK's SentimentIntensityAnalyzer (VADER lexicon). '
+'The code determines if the sentiment is positive, negative, or neutral based on the compound score.
+
+Prerequisites
+
+Python (3.x recommended)
+
+NLTK library
+
+Installation
+
+Install NLTK with:
+
+pip install nltk
+
+Code Explanation
+
+# Import necessary libraries
+import nltk
+from nltk.sentiment import SentimentIntensityAnalyzer
+
+# Download the VADER lexicon
+nltk.download('vader_lexicon')
+
+# Initialize SentimentIntensityAnalyzer
+sia = SentimentIntensityAnalyzer()
+
+# Take user input
+text = input("Enter the text: ")
+
+# Analyze sentiment
+sentiment = sia.polarity_scores(text)
+print(sentiment)
+
+# Determine sentiment
+if sentiment['compound'] > 0.05:
+    print("Positive")
+elif sentiment['compound'] < -0.05:
+    print("Negative")
+else:
+    print("Neutral")
+
+Explanation of Key Components
+
+Import Libraries:
+
+nltk: Natural Language Toolkit for processing text.
+
+SentimentIntensityAnalyzer: Performs sentiment analysis.
+
+VADER Lexicon:
+
+A pre-trained list of words with positive, negative, and neutral scores.
+
+Sentiment Analysis:
+
+sia.polarity_scores(text): Returns a dictionary with sentiment scores:
+
+neg: Negative score (0 to 1).
+
+neu: Neutral score (0 to 1).
+
+pos: Positive score (0 to 1).
+
+compound: Overall sentiment score (-1 to +1).
+
+Sentiment Classification:
+
+compound > 0.05: Positive sentiment.
+
+compound < -0.05: Negative sentiment.
+
+-0.05 <= compound <= 0.05: Neutral sentiment.
+
+Example
+
+Input:
+
+I love this product! It’s amazing and works perfectly.
+
+Output:
+
+{'neg': 0.0, 'neu': 0.254, 'pos': 0.746, 'compound': 0.8625}
+Positive
+
+Conclusion
+
+This script performs quick sentiment analysis using NLTK and VADER lexicon.
+It is effective for social media, product reviews, and other short texts.
